@@ -364,6 +364,18 @@ public class Main {
     }
 
 
+    //Combine strings function
+    //combineNames('James', 'Stevens')
+    //returns:
+    //'James Stevens'
+    public String comineString(String a ,String b){
+        return a + b;
+
+    }
+
+
+
+
 
 
 

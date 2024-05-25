@@ -88,6 +88,40 @@ public class sampleTest {
         }
     }
 
+
+    @Test
+    public void test4(){
+            String a = "aa";
+            String b= "bb";
+        System.out.println(a+b);
+        }
+
+
+
+    @Test
+    public void test5(){
+        List<StudentSort> students = new ArrayList<>(List.of(
+                new StudentSort(5, "za")
+                , new StudentSort(1, "zb")
+                , new StudentSort(1, "ab")
+                , new StudentSort(1, "mb")
+                , new StudentSort(1, "tb")
+                , new StudentSort(1, "bb")
+                , new StudentSort(3, "cc")
+        ));
+
+        Comparator<StudentSort> studentComparator = Comparator.comparing(StudentSort::getId)
+                .thenComparing(StudentSort::getName);
+
+        students.sort(studentComparator );
+        System.out.println(students);
+
+    }
+
+
+
+
+
 }
 
 
