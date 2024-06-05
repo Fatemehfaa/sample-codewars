@@ -1,12 +1,14 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.concurrent.Executor;
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+    import java.util.stream.Collectors;
+    import java.util.stream.IntStream;
+    import java.util.stream.Stream;
 
-import static java.util.Arrays.stream;
+    import static java.util.Arrays.stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -372,6 +374,218 @@ public class Main {
         return a + b;
 
     }
+
+
+    //Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+    public String evenOrOdd(int number){
+        if (number % 2 == 0){
+            return "even";
+        }
+        return "odd";
+    }
+
+
+    //Implement a function which convert the given boolean value into its string representation.
+    public String convertToString(Boolean value){
+       if (Boolean.TRUE.equals(value)){
+           return "true";
+       }
+       return "false";
+    }
+
+
+    //Write a function named setAlarm/set_alarm/set-alarm/setalarm (depending on language) which receives two parameters. The first parameter, employed, is true whenever you are employed and the second parameter, vacation is true whenever you are on vacation.
+    //The function should return true if you are employed and not on vacation (because these are the circumstances under which you need to set an alarm). It should return false otherwise. Examples:
+    //true     | true     => false
+    //true     | false    => true
+    //false    | true     => false
+    //false    | false    => false
+    public static boolean setAlarm(Boolean employed , Boolean vacation){
+        return employed && !vacation;
+    }
+
+
+    //When provided with a letter, return its position in the alphabet.
+    //Input :: "a"
+    //Ouput :: "Position of alphabet: 1"
+    public static String positionAlphabet(Character letter){
+        char lowerCase = Character.toLowerCase(letter);
+        int position =  lowerCase  - 'a' + 1;
+        return "Position of alphabet: 1" + position ;
+    }
+
+
+    //Jack really likes his number five: the trick here is that you have to multiply each number by 5 raised to the number of digits of each numbers, so, for example:
+    //  3 -->    15  (  3 * 5¹)
+    public static int multiply(Integer number){
+        int length = String.valueOf(Math.abs(number)).length();
+        int p = (int)Math.pow(5, length);
+        return number * p;
+    }
+
+
+    //Return a new array consisting of elements which are multiple of their own index in input array (length > 1).
+    public static int[] consisting(int[] array){
+        List <Integer> result = new ArrayList<>();
+        for (int i=1; i<array.length ; i++){
+            if (array[i] % i ==0 ){
+                result.add(array[i]);
+            }
+        }
+        return result.stream().mapToInt(r -> r).toArray();
+    }
+
+
+    public static int[] consist(int[] array){
+    return IntStream.range(1, array.length)
+                .filter(i-> array[i] % i ==0 )
+                .map(i -> array[i])
+                .toArray();
+        }
+
+
+
+    //Write a function that merges two sorted arrays into a single one. The arrays only contain integers. Also, the final outcome must be sorted and not have any duplicate.
+    public static int[] mergeArray(int[] first , int[] second){
+       List<int[]> numbers = List.of(first , second);
+        //Stream.of(first,second)
+      return numbers.stream()
+                .flatMapToInt(Arrays::stream)
+                .distinct()
+                .sorted()
+                .toArray();
+    }
+
+
+
+    //Complete the function which returns the weekday according to the input number:
+    //1 returns "Sunday"
+    //2 returns "Monday"
+    //3 returns "Tuesday"
+    //4 returns "Wednesday"
+    //5 returns "Thursday"
+    //6 returns "Friday"
+    //7 returns "Saturday"
+    //Otherwise returns "Wrong, please enter a number between 1 and 7"
+    public static String giveWeekday(int number){
+        return switch (number) {
+            case 1 -> "Sunday";
+            case 2 -> "Monday";
+            case 3 -> "Tuesday";
+            case 4 -> "Wednesday";
+            case 5 -> "Thursday";
+            case 6 -> "Friday";
+            case 7 -> "Saturday";
+            default -> "Wrong, please enter a number between 1 and 7";
+        };
+
+    }
+
+
+
+    //Given an array of 4 integers
+    //[a,b,c,d] representing two points (a, b) and (c, d), return a string representation of the slope of the line joining these two points.
+    //For an undefined slope (division by 0), return undefined . Note that the "undefined" is case-sensitive.
+    // a:x1
+    //   b:y1
+    //   c:x2
+    //   d:y2
+    public static String Slope(int[] numbers){
+        int a = numbers[0];
+        int b = numbers[1];
+        int c = numbers[2];
+        int d = numbers[3];
+
+        if (c - a ==0){
+            return "undefined";
+        }
+        int numerator = d - b;
+        int denominator = c - a;
+
+        int slope = numerator / denominator;
+
+        return String.valueOf(slope);
+
+    }
+
+
+
+    //Let's play! You have to return which player won! In case of a draw return Draw!.
+    //"scissors", "paper" --> "Player 1 won!"
+    //"scissors", "rock" --> "Player 2 won!"
+    //"paper", "paper" --> "Draw!"
+    public static String game(String p1 , String p2){
+
+        if(p1.equals("scissors") && p2.equals("paper")){
+            return "Player 1 won!";
+        }
+        if(p1.equals("rock") && p2.equals("scissors")){
+            return "Player 1 won!";
+        }
+        if(p1.equals("paper") && p2.equals("rock")){
+            return "Player 1 won!";
+        }
+        if(p1.equals("scissors") && p2.equals("rock")){
+            return "Player 2 won!";
+        }
+        if(p1.equals("rock") && p2.equals("paper")){
+            return "Player 2 won!";
+        }
+        if(p1.equals("paper") && p2.equals("scissors")){
+            return "Player 2 won!";
+
+        }
+        if (p1.equals("paper") && p2.equals("paper")) {
+            return "Draw!";
+        }
+        if (p1.equals("scissors") && p2.equals("scissors")) {
+            return "Draw!";
+        }
+        if (p1.equals("rock") && p2.equals("rock")) {
+            return "Draw!";
+        }
+
+        return null;
+
+    }
+
+
+
+    //Given a string str, reverse it and omit all non-alphabetic characters.
+    //For str = "krishan", the output should be "nahsirk".
+    //For str = "ultr53o?n", the output should be "nortlu".
+    //Input/Output
+    //[input] string str
+    //A string consists of lowercase latin letters, digits and symbols.
+    //[output] a string
+    public static String reverse(String str){
+        StringBuilder builder = new StringBuilder();
+        char[] charArray = str.toCharArray();
+        for(char c : charArray){
+            if (Character.isLetter(c)) {
+                builder.append(c);
+            }
+        }
+        return builder.reverse().toString();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
