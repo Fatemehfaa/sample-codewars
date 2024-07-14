@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.com.example.Expert;
+import java.com.example.StudentSort;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -39,7 +41,7 @@ public class sampleTest {
                 .filter(expert -> expert.equals(experts.get(0)))
                 .toList();
 
-//        Optional<Expert> max = experts.stream()
+//        Optional<java.com.example.Expert> max = experts.stream()
 //                .max((o1, o2) -> Math.toIntExact(o2.getPriority() - o1.getPriority()));
 
         if (list1.size() < experts.size()) {
@@ -157,6 +159,86 @@ public class sampleTest {
                 .toArray();
         System.out.println(Arrays.toString(array1));
     }
+
+
+    @Test
+    public void test9(){
+        ArrayList<Object> list = new ArrayList<>(
+                List.of(1, 2, "a", "b"));
+        List<Integer> list1 = list.stream()
+                .filter(item -> item instanceof Integer)
+                .map(item -> (Integer) item)
+                .toList();
+        System.out.println(list1);
+    }
+
+
+    @Test
+    public void test10() {
+        int num = 4;
+        long result = 1;
+        for (int i = 1; i <= num; i++) {
+            result *= i;
+        }
+        System.out.println(result);
+    }
+
+
+    @Test
+    public void test11(){
+        String code = "jhgaryua";
+            char[] charArray = code.toCharArray();
+            Arrays.sort(charArray);
+        System.out.println(charArray);
+        }
+
+
+    @Test
+    public void test12(){
+        int n =2;
+        int m = 12;
+        if (n <= 0 || m <= 0) {
+            throw new IllegalArgumentException();
+        }
+        int k = (m - 1) / n;
+        System.out.println(n * k * (k + 1) / 2);
+    }
+
+
+    @Test
+    public void test13(){
+        String name = "rilley";
+        char[] charArray = name.toCharArray();
+        charArray[0] = Character.toUpperCase(charArray[0]);
+        for (int i = 1; i < charArray.length; i++) {
+            charArray[i] = Character.toLowerCase(charArray[i]);
+        }
+        System.out.println(String.valueOf(charArray));
+    }
+
+
+    @Test
+    public void test14() {
+        String a = "hello";
+        int length = a.toCharArray().length;
+        System.out.println(length);
+    }
+
+
+    @Test
+    public void Test15(){
+        String string = "jhfh huh ujjjjjjj";
+        String[] split = string.split("\s");
+        int min = Integer.MAX_VALUE;
+        for(String s : split){
+            if (string.length() < min){
+                min = s.length();
+            }
+        }
+        System.out.println(min);
+    }
+
+
 
 
 

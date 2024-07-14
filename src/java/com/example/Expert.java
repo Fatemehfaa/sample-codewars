@@ -1,3 +1,5 @@
+package java.com.example;
+
 import java.util.Objects;
 
 public class Expert {
@@ -31,7 +33,7 @@ public class Expert {
 
     @Override
     public String toString() {
-        return "Expert{" +
+        return "java.com.example.Expert{" +
                 "priority=" + priority +
                 '}';
     }

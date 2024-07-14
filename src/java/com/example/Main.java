@@ -1,21 +1,20 @@
-    import java.util.ArrayList;
+package java.com.example;
+
+import comprator.SortByCode;
+import comprator.Student;
+
+import java.util.ArrayList;
     import java.util.Arrays;
-    import java.util.List;
-    import java.util.concurrent.Executor;
-    import java.util.concurrent.ExecutorService;
-    import java.util.concurrent.Executors;
+import java.util.Collections;
+import java.util.List;
     import java.util.stream.Collectors;
     import java.util.stream.IntStream;
-    import java.util.stream.Stream;
 
-    import static java.util.Arrays.stream;
 
 public class Main {
     public static void main(String[] args) {
 
-
     }
-
 
     // Convert a Number to a String!
     //123  --> "123"
@@ -546,7 +545,6 @@ public class Main {
         }
 
         return null;
-
     }
 
 
@@ -568,6 +566,172 @@ public class Main {
         }
         return builder.reverse().toString();
     }
+
+
+
+    //In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+    //Kata.filterList(List.of(1, 2, "a", "b")) => List.of(1,2)
+    //Kata.filterList(List.of(1, "a", "b", 0, 15)) => List.of(1,0,15)
+    //Kata.filterList(List.of(1, 2, "a", "b", "aasf", "1", "123", 123)) => List.of(1, 2, 123)
+    public static List<Object> filterList(List<Object> list){
+       return list.stream()
+                .filter(item -> item instanceof Integer )
+                .map(item -> (Integer)item)
+                .collect(Collectors.toList());
+    }
+
+
+
+    //Complete the function so that it finds the average of the three scores passed to it and returns the letter value associated with that grade.
+    //|  Numerical Score   | Letter Grade |
+    //| 90 <= score <= 100 |     'A'      |
+    //|  80 <= score < 90  |     'B'      |
+    //|  70 <= score < 80  |     'C'      |
+    //|  60 <= score < 70  |     'D'      |
+    //|  0 <= score < 60   |     'F'      |
+    public static char getGrade(int s1 , int s2 , int s3){
+       int average = ( s1 + s2 + s3)/3 ;
+       if (average >= 90 && average <= 100){
+           return 'A';
+       } else if (average >= 80 && average < 90) {
+           return 'B';
+       } else if (average >= 70 && average < 80) {
+           return 'C';
+       } else if (average >= 60 && average < 70) {
+           return 'D';
+       } else {
+           return 'F';
+       }
+
+
+    }
+
+
+
+    //To find the mean (average) of a set of numbers add all of the numbers together and divide by the number of values in the list.
+    //For an example list of 1, 3, 5, 7
+    //1. Add all of the numbers
+    //1+3+5+7 = 16
+    //2. Divide by the number of values in the list. In this example there are 4 numbers in the list.
+    //16/4 = 4
+    public static int findAverage(int[] numbers){
+        int sum = 0;
+        for(int number : numbers){
+            sum += number;
+        }
+        return sum/numbers.length;
+    }
+    //return (int)Arrays.stream(nums).average().orElse(0);
+
+
+
+    //Your task is to write function factorial.
+    public static long factorial(int num){
+        if(num == 0){
+            return 1;
+        }
+        long result = 1;
+        for(int i = 1 ; i <= num ; i++){
+            result *= i;
+        }
+        return result;
+    }
+
+
+
+    //Determine the total number of digits in the integer (n>=0) given as input to the function. For example, 9 is a single digit, 66 has 2 digits and 128685 has 6 digits. Be careful to avoid overflows/underflows.
+    public static int digits(Long n){
+       return Long.toString(n).length();
+    }
+
+
+
+    //Happy Holidays fellow Code Warriors!
+    //Santa's senior gift organizer Elf developed a way to represent up to 26 gifts by assigning a unique alphabetical character to each gift. After each gift was assigned a character, the gift organizer Elf then joined the characters to form the gift ordering code.
+    //Santa asked his organizer to order the characters in alphabetical order, but the Elf fell asleep from consuming too much hot chocolate and candy canes! Can you help him out?
+    //Sort the Gift Code
+    //Write a function called sortGiftCode/sort_gift_code/SortGiftCode that accepts a string containing up to 26 unique alphabetical characters, and returns a string containing the same characters in alphabetical order.
+    //Examples (Input -- => Output):
+    //"abcdef"                      -- => "abcdef"
+    //"pqksuvy"                     -- => "kpqsuvy"
+    //"zyxwvutsrqponmlkjihgfedcba"  -- => "abcdefghijklmnopqrstuvwxyz"
+    public static String sortGift(String code){
+        char[] charArray = code.toCharArray();
+        Arrays.sort(charArray);
+        return new String(charArray);
+    }
+
+
+    /**
+     * this function sum two number and divide 2 .
+     *
+     * @param a   a is number one .
+     * @param b   b is number two .
+     * @return    its return number of calculate of two number
+     */
+    public static int calculate(int a , int b){
+        return (a + b)/2;
+
+    }
+
+
+
+    //Find the sum of all multiples of n below m
+    //n and m are natural numbers (positive integers)
+    //m is excluded from the multiples
+    //Kata.sumMul(2, 9)   ==> 2 + 4 + 6 + 8 = 20
+    //Kata.sumMul(4, 123) ==> 4 + 8 + 12 + ... = 1860
+    //Kata.sumMul(4, -7)  // throws IllegalArgumentException
+    public static long sumMul(int n , int m){
+        if (n <= 0 || m <= 0) {
+            throw new IllegalArgumentException();
+        }
+        int k = (m - 1) / n;
+        return n * k * (k + 1) / 2;
+    }
+
+
+
+    //Write a method that takes one argument as name and then greets that name, capitalized and ends with an exclamation point.
+    //"riley" --> "Hello Riley!"
+    public static String greets(String name) {
+        char[] charArray = name.toCharArray();
+        charArray[0] = Character.toUpperCase(charArray[0]);
+        for (int i = 1; i < charArray.length; i++) {
+            charArray[i] = Character.toLowerCase(charArray[i]);
+        }
+        return "Hello " + String.valueOf(charArray) + "!";
+    }
+    // return name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+
+
+    //Find the total sum of internal angles (in degrees) in an n-sided simple polygon. N will be greater than 2.
+    public static int sumOfAngel(int n) {
+        return (n - 2) * 180;
+    }
+
+
+
+    //Simple, given a string of words, return the length of the shortest word(s).
+    //String will never be empty and you do not need to account for different data types.
+    public static int findShort(String string){
+        return Arrays.stream(string.split(" ")).mapToInt(String::length).min().orElse(0);
+    }
+
+
+
+    //Given a string made up of letters a, b, and/or c, switch the position of letters a and b (change a to b and vice versa). Leave any incidence of c untouched.
+    public static String switchLetter(String letter){
+        return letter.replace("a", "x").replace("b", "a").replace("x", "b");
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -605,8 +769,6 @@ public class Main {
 
 
 }
-
-
 
 
 
