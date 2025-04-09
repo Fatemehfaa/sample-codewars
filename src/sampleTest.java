@@ -1,7 +1,9 @@
 import org.junit.Test;
 
-import java.com.example.Expert;
-import java.com.example.StudentSort;
+import com.example.sample.Expert;
+import com.example.sample.StudentSort;
+
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -24,12 +26,11 @@ public class sampleTest {
         ));
 
 
-
-        Long aa=experts.stream().mapToLong(Expert ::getPriority)
+        Long aa = experts.stream().mapToLong(Expert::getPriority)
                 .min()
                 .orElse(0);
 
-        List<Expert> aaa=experts.stream().filter(c -> c.getPriority()==aa)
+        List<Expert> aaa = experts.stream().filter(c -> c.getPriority() == aa)
                 .collect(Collectors.toList());
 
         System.out.println(aaa);
@@ -141,18 +142,18 @@ public class sampleTest {
     }
 
     @Test
-    public void test7(){
+    public void test7() {
         int number = -3;
         int length = String.valueOf(number < 0 ? number * -1 : number).length();
-        int p = (int)Math.pow(5, length);
+        int p = (int) Math.pow(5, length);
         System.out.println(number * p);
 
     }
 
 
     @Test
-    public void test8(){
-        int[] array = {-4 , 20 , 4};
+    public void test8() {
+        int[] array = {-4, 20, 4};
         int[] array1 = IntStream.range(1, array.length)
                 .filter(i -> array[i] % i == 0)
                 .map(i -> array[i])
@@ -162,7 +163,7 @@ public class sampleTest {
 
 
     @Test
-    public void test9(){
+    public void test9() {
         ArrayList<Object> list = new ArrayList<>(
                 List.of(1, 2, "a", "b"));
         List<Integer> list1 = list.stream()
@@ -185,17 +186,17 @@ public class sampleTest {
 
 
     @Test
-    public void test11(){
+    public void test11() {
         String code = "jhgaryua";
-            char[] charArray = code.toCharArray();
-            Arrays.sort(charArray);
+        char[] charArray = code.toCharArray();
+        Arrays.sort(charArray);
         System.out.println(charArray);
-        }
+    }
 
 
     @Test
-    public void test12(){
-        int n =2;
+    public void test12() {
+        int n = 2;
         int m = 12;
         if (n <= 0 || m <= 0) {
             throw new IllegalArgumentException();
@@ -206,7 +207,7 @@ public class sampleTest {
 
 
     @Test
-    public void test13(){
+    public void test13() {
         String name = "rilley";
         char[] charArray = name.toCharArray();
         charArray[0] = Character.toUpperCase(charArray[0]);
@@ -226,20 +227,162 @@ public class sampleTest {
 
 
     @Test
-    public void Test15(){
+    public void Test15() {
         String string = "jhfh huh ujjjjjjj";
         String[] split = string.split("\s");
         int min = Integer.MAX_VALUE;
-        for(String s : split){
-            if (string.length() < min){
+        for (String s : split) {
+            if (string.length() < min) {
                 min = s.length();
             }
         }
         System.out.println(min);
     }
 
+    @Test
+    public void test16() {
+        int a = 5;
+        int b = 10;
+        int[] result = new int[b - a + 1];
+        for (int i = a; i < b; i++) {
+            result[i - a] = i;
+        }
+        System.out.println(Arrays.toString(result));
+    }
 
 
+    @Test
+    public void repeatedString() {
+        String string = "sTring 12";
+        StringBuilder result = new StringBuilder();
+
+        for (char c : string.toCharArray()) {
+            result.append(c).append(c);
+        }
+        System.out.println(result.toString());
+    }
+
+
+    @Test
+    public void test17() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("hello");
+        buffer.append("world");
+        System.out.println(buffer.toString());
+    }
+
+
+    @Test
+    public void test18() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("hello");
+        builder.append("world");
+        System.out.println(builder.toString());
+    }
+
+
+    @Test
+    public void test19() {
+        String string = new String();
+        string = "hello";
+        string = "world";
+        System.out.println(string);
+
+    }
+
+
+    @Test
+    public void billboard() {
+        String name = "ass";
+        int price = 10;
+        System.out.println(name.repeat(price).length());
+
+    }
+
+
+    @Test
+    public void isIsogram() {
+        String string = "sttring";
+        string = string.toLowerCase();
+        HashSet<Character> hashSet = new HashSet<>();
+        for (Character c : string.toCharArray()) {
+            if (hashSet.contains(c)) {
+                System.out.println(false);
+            }
+            hashSet.add(c);
+        }
+        System.out.println(true);
+    }
+
+
+    @Test
+    public void sumOfDifferences() {
+        int[] arr = {10, 4, 1, 4};
+        if (arr.length <= 1) {
+            System.out.println(0);
+        }
+        Arrays.sort(arr);
+        int sum = 0;
+        for (int i = arr.length - 1; i > 0; i--) {
+            sum += arr[i] - arr[i - 1];
+        }
+        System.out.println(sum);
+
+    }
+
+
+    @Test
+    public void sayHello() {
+        String[] arr = new String[]{"fa", "fn"};
+        System.out.println(String.join(" ", arr));
+
+    }
+
+    @Test
+    public void recursion() {
+        int result = sum(10);
+        System.out.println(result);
+    }
+
+    public static int sum(int k) {
+        if (k > 0) {
+            return k + sum(k - 1);
+        } else {
+            return 0;
+        }
+    }
+
+
+    @Test
+    public void printf(){
+        // Default
+        System.out.printf("%f%n", 123456.78);
+
+        // Two decimal digits
+        System.out.printf("%.2f%n", 123456.78);
+
+        // No decimal digits
+        System.out.printf("%.0f%n", 123456.78);
+
+        // No decimal digits but keep the decimal point
+        System.out.printf("%#.0f%n", 123456.78);
+
+        // Group digits
+        System.out.printf("%,.2f%n", 123456.78);
+
+        // Scientific notation with two digits of precision
+        System.out.printf("%.2e", 123456.78);
+    }
+
+
+    @Test
+    public void amalgar(){
+        int a = -16, b = 1;
+        System.out.println(a >> b);
+        a = -17;
+        b = 1;
+        System.out.println(a >>> b);
+    }
 
 
 

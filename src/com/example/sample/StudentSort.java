@@ -1,4 +1,4 @@
-package java.com.example;
+package com.example.sample;
 
 public class StudentSort {
     private int id;
